@@ -1,7 +1,7 @@
 '''
 Processes a file of IP addresses and adds geographic and ASN information
 
-Usage: add_asn_to_ips.py ip.list
+Usage: sample_script.py ip.list
 
 Output: csv with ip,asn,country_code,longitude,latitude
 
@@ -16,12 +16,12 @@ import pyasn
 
 start = time.clock()
 reader = geoip2.database.Reader('GeoIP2-City.mmdb')
-print "Read geoip database in: " + str(time.clock() - start)
+print("Read geoip database in: " + str(time.clock() - start))
 sys.stdout.flush()
 
 start = time.clock()
-ASES = pyasn.pyasn('ipasn_db_20160930')
-print "Read asn database in: " + str(time.clock() - start)
+ASES = pyasn.pyasn('ipasn_db_20200119')
+print("Read asn database in: " + str(time.clock() - start))
 sys.stdout.flush()
 
 def get_asn(ip_address):
@@ -45,7 +45,7 @@ def get_geo_info(ip_address):
     }
 
 
-with open(sys.argv[2], "wb") as out:
+with open(sys.argv[2], "w") as out:
     writer = csv.writer(out)
     for line in open(sys.argv[1]):
         ip_addr = line.strip()
